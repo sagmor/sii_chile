@@ -16,7 +16,7 @@ module SIIChile
     get '/consulta' do
       @consulta = Consulta.new(params[:rut])
 
-      @resultado = settings.cache.get(@consulta.rut.format)
+      # @resultado = settings.cache.get(@consulta.rut.format)
 
       unless @resultado
         @resultado = @consulta.resultado

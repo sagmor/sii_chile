@@ -26,22 +26,26 @@ module SIIChile
 
         data = Nokogiri::HTML(response.body)
 
+        # raise data.xpath(XPATH_ACTIVIDADES)[1..-1].inspect
+
+        actividades = data.xpath(XPATH_ACTIVIDADES)[1..-1].map do |node|
+          {
+            :giro => node.xpath('./td[1]/font').text.strip,
+            :codigo => node.xpath('./td[2]/font').text.strip.to_i,
+            :categoria => node.xpath('./td[3]/font').text.strip,
+            :afecta =>  node.xpath('./td[4]/font').text.strip == 'Si'
+          }
+        end rescue []
+
         {
           :rut => @rut.format,
           :razon_social => data.xpath(XPATH_RAZON_SOCIAL).text.strip,
-          :actividades => data.xpath(XPATH_ACTIVIDADES)[1..-1].map do |node|
-            {
-              :giro => node.xpath('./td[1]/font').text.strip,
-              :codigo => node.xpath('./td[2]/font').text.strip.to_i,
-              :categoria => node.xpath('./td[3]/font').text.strip,
-              :afecta =>  node.xpath('./td[4]/font').text.strip == 'Si'
-            }
-          end
+          :actividades => actividades
         }
-      rescue Error => e
+      rescue StandardError => e
         {
           :rut => @rut.format,
-          :error => e.mensage
+          :error => e.message
         }
       end
   end
