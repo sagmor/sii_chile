@@ -1,33 +1,74 @@
-# SIIChile
+# API SII Chile
 
-Ruby API to some services from sii.cl
+API para acceder a algunos de los servicios del
+servicio de impuestos internos de chile.
 
-## Installation
+## Uso
 
-Add this line to your application's Gemfile:
+### Servicio web
 
-    gem 'sii_chile'
+Basta con realizar una consulta a `https://siichile.herokuapp.com/consulta`
+con el parametro rut para obtener un resultado.
 
-And then execute:
+Por ejemplo usando jQuery basta con:
 
-    $ bundle
+```javascript
+jQuery.getJSON('https://siichile.herokuapp.com/consulta', {rut: '76.118.195-5'}, function(result) {
+  console.log(result);
+})
+```
 
-Or install it yourself as:
+### Ruby
 
-    $ gem install sii_chile
+También se puede utilizar directamente desde ruby instalando la gema sii_chile
+y realizando la consulta:
 
-## Usage
+```ruby
+SIIChile::Consulta.new('76.118.195-5').resultado
+```
 
-TODO: Write usage instructions here
+## Legal
 
-## Disclaimer
+### Descargos
 
-This work is not developed, supported nor endorsed in any way by SII.cl
+Este desarrollo no está respaldado ni afiliado de ningúna forma al
+Servicio de Impuestos Internos de Chile.
 
-## Contributing
+Este servicio es solo una interfaz para la obtencíon de datos publicos
+disponibles desde el sitio http://www.sii.cl y no se garantiza la disponibilidad
+del servicio
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+### Licencia
+
+```text
+Copyright (c) 2013 Seba Gamboa
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
+
+## Contribuír
+
+1. Fork
+2. Branch (`git checkout -b my-new-feature`)
+3. Commit (`git commit -am 'Add some feature'`)
+4. Push (`git push origin my-new-feature`)
+5. Y envía un Pull Request
