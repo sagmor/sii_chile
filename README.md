@@ -27,6 +27,14 @@ y realizando la consulta:
 SIIChile::Consulta.new('76.118.195-5').resultado
 ```
 
+## Contribuír
+
+1. Fork
+2. Branch (`git checkout -b my-new-feature`)
+3. Commit (`git commit -am 'Add some feature'`)
+4. Push (`git push origin my-new-feature`)
+5. Y envía un Pull Request
+
 ## Legal
 
 ### Descargos
@@ -64,11 +72,3 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
-
-## Contribuír
-
-1. Fork
-2. Branch (`git checkout -b my-new-feature`)
-3. Commit (`git commit -am 'Add some feature'`)
-4. Push (`git push origin my-new-feature`)
-5. Y envía un Pull Request
