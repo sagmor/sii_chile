@@ -27,6 +27,7 @@ module SIIChile
         @resultado[:error] ? 404 : 200,
         {
           'Content-Type' => 'application/json',
+          'Access-Control-Allow-Origin' => '*',
           'X-Version' => SIIChile::VERSION
         },
         MultiJson.dump(@resultado)
