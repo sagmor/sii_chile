@@ -26,8 +26,6 @@ module SIIChile
 
         data = Nokogiri::HTML(response.body)
 
-        # raise data.xpath(XPATH_ACTIVIDADES)[1..-1].inspect
-
         actividades = data.xpath(XPATH_ACTIVIDADES)[1..-1].map do |node|
           {
             :giro => node.xpath('./td[1]/font').text.strip,
