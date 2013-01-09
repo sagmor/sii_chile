@@ -1,3 +1,3 @@
-module SiiChile
-  VERSION = "0.0.1"
+module SIIChile
+  VERSION = "0.1.0"
 end

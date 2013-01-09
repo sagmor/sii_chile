@@ -1,6 +1,6 @@
 # SIIChile
 
-TODO: Write a gem description
+Ruby API to some services from sii.cl
 
 ## Installation
 
@@ -19,6 +19,10 @@ Or install it yourself as:
 ## Usage
 
 TODO: Write usage instructions here
+
+## Disclaimer
+
+This work is not developed, supported nor endorsed in any way by SII.cl
 
 ## Contributing
 

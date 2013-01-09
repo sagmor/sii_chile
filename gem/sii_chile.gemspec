@@ -8,12 +8,14 @@ Gem::Specification.new do |gem|
   gem.version       = SIIChile::VERSION
   gem.authors       = ["Seba Gamboa"]
   gem.email         = ["me@sagmor.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Ruby API to some services from sii.cl}
+  gem.summary       = %q{Ruby API to some services from sii.cl}
   gem.homepage      = ""
 
-  gem.files         = `git ls-files`.split($/)
+  gem.files         = `git ls-files`.split($/) rescue []
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
+  gem.add_dependency "faraday"
+  gem.add_dependency "nokogiri"
 end

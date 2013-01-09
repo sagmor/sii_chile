@@ -1,5 +1,6 @@
-require "sii_chile/version"
+require 'faraday'
+require 'nokogiri'
 
-module SiiChile
-  # Your code goes here...
-end
+require "sii_chile/version"
+require "sii_chile/rut"
+require "sii_chile/consulta"
