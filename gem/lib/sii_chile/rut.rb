@@ -30,7 +30,7 @@ module SIIChile
         digit, factor = *a
         r += digit.to_i * factor
       end
-      all_codes[11 - partial_sum%11].to_s
+      all_codes[(11 - partial_sum%11)%11].to_s
     end
 
     def number_with_delimiter(delimiter='.')
