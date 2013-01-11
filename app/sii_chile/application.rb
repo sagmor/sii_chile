@@ -19,11 +19,21 @@ module SIIChile
       @consulta = Consulta.new(params[:rut])
 
       @resultado = settings.cache.get(@consulta.rut.format)
+      cached = true
 
       unless @resultado
         @resultado = @consulta.resultado
         settings.cache.set(@consulta.rut.format, @resultado)
+        cached = false
       end
+
+      StatsMix.track('Request', 1, :meta => {
+        rut: @consulta.rut.format,
+        cached: cached,
+        ip: request.ip,
+        user_agent: request.user_agent,
+        referer: request.referer
+      })
 
       [
         200,
