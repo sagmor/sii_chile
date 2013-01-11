@@ -3,9 +3,11 @@ require 'sinatra'
 require 'dalli'
 require 'rack/contrib/jsonp'
 require 'multi_json'
+require 'newrelic_rpm'
 
 module SIIChile
   class Application < Sinatra::Base
+
     set :cache, Dalli::Client.new()
     use Rack::JSONP
 
@@ -33,5 +35,6 @@ module SIIChile
         MultiJson.dump(@resultado)
       ]
     end
+
   end
 end
