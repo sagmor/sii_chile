@@ -4,6 +4,7 @@ require 'dalli'
 require 'rack/contrib/jsonp'
 require 'multi_json'
 require 'newrelic_rpm'
+require 'statsmix'
 
 module SIIChile
   class Application < Sinatra::Base
