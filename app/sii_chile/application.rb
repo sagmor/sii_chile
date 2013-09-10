@@ -9,7 +9,9 @@ require 'statsmix'
 module SIIChile
   class Application < Sinatra::Base
 
-    set :cache, Dalli::Client.new()
+    set :cache, Dalli::Client.new(ENV["MEMCACHIER_SERVERS"].split(","),
+                    {:username => ENV["MEMCACHIER_USERNAME"],
+                     :password => ENV["MEMCACHIER_PASSWORD"]})
     use Rack::JSONP
 
     get '/' do
