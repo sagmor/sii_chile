@@ -7,7 +7,7 @@ module SIIChile
     def initialize(rut)
       @rut = rut.to_s.strip
       @number = @rut.gsub(/[^0-9K]/i,'')[0...-1]
-      @code = @rut[-1]
+      @code = @rut[-1].upcase
     end
 
     def valid?
