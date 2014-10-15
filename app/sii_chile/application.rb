@@ -21,12 +21,14 @@ module SIIChile
     get '/consulta' do
       @consulta = Consulta.new(params[:rut])
 
-      @resultado = settings.cache.get(@consulta.rut.format)
+      @cache_key = 'v2'+@consulta.rut.format
+
+      @resultado = settings.cache.get(@cache_key)
       cached = true
 
       unless @resultado
         @resultado = @consulta.resultado
-        settings.cache.set(@consulta.rut.format, @resultado)
+        settings.cache.set(@cache_key, @resultado)
         cached = false
       end
 
