@@ -11,8 +11,8 @@ module SIIChile
     end
 
     protected
-      XPATH_RAZON_SOCIAL = '/html/body/center[2]/table[1]/tr[1]/td[2]/font'
-      XPATH_ACTIVIDADES = '/html/body/center[2]/table[4]/tr/td[2]/table/tr'
+      XPATH_RAZON_SOCIAL = '/html/body/div/div[4]'
+      XPATH_ACTIVIDADES = '/html/body/div/table/tr'
 
       def fetch!
         raise 'Rut invalido' unless @rut.valid?
@@ -21,7 +21,9 @@ module SIIChile
           'RUT' => @rut.number,
           'DV' => @rut.code,
           'PRG' => 'STC',
-          'OPC' => 'NOR'
+          'OPC' => 'NOR',
+          'txt_code' => '8344',
+          'txt_captcha' => 'bWRMcWRNWUpmU1kyMDE0MTAxNTE5NTMzMWhQZVczVk9FRGU2ODM0NGNNQmlSaHVJRlZFMDAwTjVZVWwxQWRoLlFVSjFSVTVNU2paNlIwWk5WUT09Z2FndUpMclY0cC4='
         })
 
         data = Nokogiri::HTML(response.body)
