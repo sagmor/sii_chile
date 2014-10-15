@@ -12,7 +12,7 @@ module SIIChile
 
     protected
       XPATH_RAZON_SOCIAL = '/html/body/div/div[4]'
-      XPATH_ACTIVIDADES = '/html/body/div/table/tr'
+      XPATH_ACTIVIDADES = '/html/body/div/table[1]/tr'
 
       def fetch!
         raise 'Rut invalido' unless @rut.valid?
