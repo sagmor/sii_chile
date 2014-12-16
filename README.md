@@ -3,10 +3,6 @@
 API para acceder a algunos de los servicios del
 servicio de impuestos internos de chile.
 
-## Problema
-Los "amigos" del SII le agregaron un CAPCHA a la página "[CONSULTAR SITUACIÓN TRIBUTARIA DE TERCEROS ](https://zeus.sii.cl/cvc/stc/stc.html)" así que está gema se podría decir que ya no sirve.
-Si alguien se contacta con el SII para quitar ese CAPTCHA o sabe como saltarselo se puede poner en contacto conmigo.
-
 ## Uso
 
 ### Servicio web
