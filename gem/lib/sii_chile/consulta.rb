@@ -17,11 +17,13 @@ module SIIChile
       def fetch!
         raise 'Rut invalido' unless @rut.valid?
 
-        response = Faraday.get('https://zeus.sii.cl/cvc_cgi/stc/getstc', {
+        response = Faraday.post('https://zeus.sii.cl/cvc_cgi/stc/getstc', {
           'RUT' => @rut.number,
           'DV' => @rut.code,
           'PRG' => 'STC',
-          'ACEPTAR' => 'Efectuar%20Consulta'
+          'OPC' => 'NOR',
+          'txt_code' => '8344',
+          'txt_captcha' => 'bWRMcWRNWUpmU1kyMDE0MTAxNTE5NTMzMWhQZVczVk9FRGU2ODM0NGNNQmlSaHVJRlZFMDAwTjVZVWwxQWRoLlFVSjFSVTVNU2paNlIwWk5WUT09Z2FndUpMclY0cC4='
         })
 
         data = Nokogiri::HTML(response.body)
