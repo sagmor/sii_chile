@@ -1,3 +1,6 @@
+require 'json'
+require 'base64'
+
 module SIIChile
   class Consulta
     attr_reader :rut
@@ -17,13 +20,14 @@ module SIIChile
       def fetch!
         raise 'Rut invalido' unless @rut.valid?
 
+        captcha = fetch_captcha!
         response = Faraday.post('https://zeus.sii.cl/cvc_cgi/stc/getstc', {
           'RUT' => @rut.number,
           'DV' => @rut.code,
           'PRG' => 'STC',
           'OPC' => 'NOR',
-          'txt_code' => '8344',
-          'txt_captcha' => 'bWRMcWRNWUpmU1kyMDE0MTAxNTE5NTMzMWhQZVczVk9FRGU2ODM0NGNNQmlSaHVJRlZFMDAwTjVZVWwxQWRoLlFVSjFSVTVNU2paNlIwWk5WUT09Z2FndUpMclY0cC4='
+          'txt_code' => captcha[:code],
+          'txt_captcha' => captcha[:captcha]
         })
 
         data = Nokogiri::HTML(response.body)
@@ -46,6 +50,19 @@ module SIIChile
         {
           :rut => @rut.format,
           :error => e.message
+        }
+      end
+
+      def fetch_captcha!
+        response = Faraday.post('https://zeus.sii.cl/cvc_cgi/stc/CViewCaptcha.cgi', {
+          oper: 0
+        });
+
+        data = JSON.parse(response.body)
+
+        {
+          code: Base64.decode64(data["txtCaptcha"])[36..39],
+          captcha: data["txtCaptcha"]
         }
       end
   end
