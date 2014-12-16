@@ -1,7 +1,7 @@
 PATH
   remote: gem
   specs:
-    sii_chile (0.1.3)
+    sii_chile (0.1.4)
       faraday
       nokogiri
 
