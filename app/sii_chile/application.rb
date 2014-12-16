@@ -27,9 +27,9 @@ module SIIChile
       cached = true
 
       unless @resultado
-        @resultado = @consulta.resultado
-        settings.cache.set(@cache_key, @resultado)
         cached = false
+        @resultado = @consulta.resultado
+        settings.cache.set(@cache_key, @resultado) unless @resultado[:razon_social].empty?
       end
 
       StatsMix.track('Request', 1, :meta => {
