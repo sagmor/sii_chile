@@ -4,7 +4,6 @@ require 'dalli'
 require 'rack/contrib/jsonp'
 require 'multi_json'
 require 'newrelic_rpm'
-require 'statsmix'
 
 module SIIChile
   class Application < Sinatra::Base
@@ -31,14 +30,6 @@ module SIIChile
         @resultado = @consulta.resultado
         settings.cache.set(@cache_key, @resultado) unless @resultado[:razon_social].empty?
       end
-
-      StatsMix.track('Request', 1, :meta => {
-        rut: @consulta.rut.format,
-        cached: cached,
-        ip: request.ip,
-        user_agent: request.user_agent,
-        referer: request.referer
-      })
 
       [
         200,
