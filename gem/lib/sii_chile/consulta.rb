@@ -21,6 +21,7 @@ module SIIChile
         raise 'Rut invalido' unless @rut.valid?
 
         captcha = fetch_captcha!
+        # HTML form: https://zeus.sii.cl/cvc/stc/stc.html
         response = Faraday.post('https://zeus.sii.cl/cvc_cgi/stc/getstc', {
           'RUT' => @rut.number,
           'DV' => @rut.code,
