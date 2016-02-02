@@ -20,7 +20,11 @@ module SIIChile
     get '/consulta' do
       @consulta = Consulta.new(params[:rut])
 
-      @cache_key = SIIChile::VERSION+@consulta.rut.format
+      @cache_key = [
+        SIIChile::VERSION,
+        @consulta.rut.format,
+        Time.now.strftime('%Y%m%d')
+      ].join('/')
 
       @resultado = settings.cache.get(@cache_key)
       cached = true
@@ -28,7 +32,7 @@ module SIIChile
       unless @resultado
         cached = false
         @resultado = @consulta.resultado
-        settings.cache.set(@cache_key, @resultado) unless @resultado[:razon_social].empty?
+        settings.cache.set(@cache_key, @resultado)
       end
 
       [
